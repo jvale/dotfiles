@@ -1,0 +1,34 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[user]
+	name = Joao Vale
+	email = joao.vale@example.com
+[color]
+	ui = auto
+[alias]
+	b = branch
+	st = status -sb
+	ci = commit
+	co = checkout
+	up = checkout
+	d  = diff
+	dp = diff --patience
+	dc = diff --cached
+	dv  = difftool
+	dcp = diff --cached --patience
+	glo = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	gl = log --graph --decorate --pretty=format:'%C(yellow)%h%C(bold red)%d %Creset%s %C(green)%ar %C(bold blue)%cn' --abbrev-commit --all
+	pr = pull --rebase
+[push]
+	default = simple
+
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+
+[gitreview]
+	scheme = https
+	port = 443
+	username = jvale
