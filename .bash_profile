@@ -9,9 +9,8 @@ export LC_ALL=en_US.UTF-8
 shopt -s histappend
 
 # Homebrew
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
 
-alias fucking=sudo
 alias ll="ls -l"
 
 sshk() { ssh-copy-id $1 && ssh $1; }
@@ -20,31 +19,19 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-PATH=$HOME/.chefdk/gem/ruby/2.4.0/bin:/usr/local/bin:$PATH
-
 # Python
+export REQUESTS_CA_BUNDLE="/usr/local/etc/openssl@1.1/cert.pem"
 source /usr/local/bin/virtualenvwrapper.sh
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
-export PATH="/usr/local/opt/curl/bin:$PATH"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 lerolero ()
 {
-    curl -s http://www.lerolero.com/ | xmllint --html --xpath '//*[@id="frase_aqui"]/text()' - 2> /dev/null | cowsay
-}
-lerolerov ()
-{
+    #curl -s http://www.lerolero.com/ | xmllint --html --xpath '//*[@id="frase_aqui"]/text()' - 2> /dev/null | say -v joana
     chrome --headless --disable-gpu --dump-dom https://www.lerolero.com 2>/dev/null | sed -e ':a' -e 'N' -e '$!ba' -e 's#.*<div class=\"sentence[^>]*>\([^<]*\)</div>.*>#\1#g'| say -v joana
 }
 
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/Projects/google-cloud-sdk/path.bash.inc' ]; then . '~/Projects/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '~/Projects/google-cloud-sdk/completion.bash.inc' ]; then . '~/Projects/google-cloud-sdk/completion.bash.inc'; fi
 
 alias k=kubectl
 alias ka='kubectl apply'
@@ -61,7 +48,5 @@ alias ku='kubectl update'
 alias kx='kubectl exec'
 
 export ANSIBLE_TRANSPORT=ssh
-
-export REQUESTS_CA_BUNDLE="/usr/local/etc/openssl/cert.pem"
 
 alias weather="curl http://v2.wttr.in/Porto"
