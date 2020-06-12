@@ -11,6 +11,23 @@ shopt -s histappend
 # Homebrew
 export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
 
+# Python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export REQUESTS_CA_BUNDLE="/usr/local/etc/openssl@1.1/cert.pem"
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# Set the pyenv shims to initialize
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
+
+# Miniconda
+if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+   . "/opt/miniconda3/etc/profile.d/conda.sh"
+fi
+
 alias ll="ls -l"
 
 sshk() { ssh-copy-id $1 && ssh $1; }
@@ -18,11 +35,6 @@ sshk() { ssh-copy-id $1 && ssh $1; }
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-# Python
-export REQUESTS_CA_BUNDLE="/usr/local/etc/openssl@1.1/cert.pem"
-source /usr/local/bin/virtualenvwrapper.sh
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
