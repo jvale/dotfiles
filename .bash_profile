@@ -18,9 +18,10 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # pyenv
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-# Set the pyenv shims to initialize
+export PYENV_ROOT="$HOME/.pyenv"
 if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
 fi
 
 # Miniconda
