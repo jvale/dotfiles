@@ -38,11 +38,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
 lerolero ()
 {
-    #curl -s http://www.lerolero.com/ | xmllint --html --xpath '//*[@id="frase_aqui"]/text()' - 2> /dev/null | say -v joana
-    chrome --headless --disable-gpu --dump-dom https://www.lerolero.com 2>/dev/null | sed -e ':a' -e 'N' -e '$!ba' -e 's#.*<div class=\"sentence[^>]*>\([^<]*\)</div>.*>#\1#g'| say -v joana
+    chrome --headless --disable-gpu --dump-dom https://www.lerolero.com 2>/dev/null | sed -e "s,article,div,g" | xmllint --html --xpath '//*[contains(@class,"sentence")]/text()' - | say -v joana
 }
 
 
